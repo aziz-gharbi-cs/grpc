@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package prime;
+
+option java_multiple_files = true;
+option java_package = "com.example.prime";
+
+service PrimeService {
+    rpc IsPrime (PrimeRequest) returns (PrimeResponse);
+    rpc FirstPrime (FirstPrimeRequest) returns (stream PrimeNumber);
+}
+
+message PrimeRequest {
+    int64 n = 1;
+}
+
+message PrimeResponse {
+    int64 n = 1;
+    bool is_prime = 2;
+    repeated int64 factors = 3;
+    string message = 4;
+}
+
+message FirstPrimeRequest {
+    int64 count = 1;
+}
+
+message PrimeNumber {
+    int64 value = 1;
+}
